@@ -23,7 +23,8 @@ groups = {
 
 #token = facebook.GraphAPI().get_app_access_token(config.get('facebook_app', 'app_id'), config.get('facebook_app', 'app_secret'))
 token = config.get('facebook', 'token')
-confidence_threshold = config.get('fuzzywuzzy', 'confidence_threshold')
+#NOTEICE THE GET INT HERE!! WE DO THIS BECASUE THIS IS AN INT
+confidence_threshold = config.getint('fuzzywuzzy', 'confidence_threshold')
 graph = facebook.GraphAPI(token)
 previous_poll_time = datetime.now(tz.tzutc())
 current_poll_time = datetime.now(tz.tzutc())
@@ -41,6 +42,7 @@ def findMatchedWords(post):
 
 def checkIfPostOfInterest(post, group, groupId):
 	matchedWordsWithConfidence = findMatchedWords(post["message"].lower())
+	print "matchedWordsWithConfidence :: " , matchedWordsWithConfidence
 	if (len(matchedWordsWithConfidence) > 0):
 		print "post is of interest %s " % (matchedWordsWithConfidence)
 		html = emailSender.formatMessage(post, group, groupId, matchedWordsWithConfidence)
@@ -55,12 +57,12 @@ def poll():
 	global current_poll_time
 	global previous_poll_time
 	global polling_offset
+	#update the polling times
 	previous_poll_time = current_poll_time
 	current_poll_time=datetime.now(tz.tzutc())
 	for groupName, groupId in groups.iteritems():
 		url = groupId + "/feed?fields=message,created_time,updated_time,link&limit=10"
 		test = graph.get_object(url)
-		#now = datetime.now(tz.tzutc())
 		lower_time_limit = previous_poll_time
 		for post in test["data"]:
 			created_time = parse(post['created_time'])
