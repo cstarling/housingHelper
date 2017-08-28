@@ -5,4 +5,9 @@
 .idea/
 out/
 
+##### PYTHON #####
+*.pyc
+
 config.cfg
+
+
