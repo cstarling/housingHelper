@@ -1,0 +1,8 @@
+#Intellij files #
+######################
+*.iml
+*.iws
+.idea/
+out/
+
+config.cfg

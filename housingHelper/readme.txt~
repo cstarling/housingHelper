@@ -1,0 +1,13 @@
+http://findmyfbid.com/success/1650616371871158
+
+https://developers.facebook.com/docs/graph-api/reference/v2.8/group/members/
+
+https://developers.facebook.com/tools/explorer/211505512667724?method=GET&path=7030462319%2Ffeed%3Ffields%3Dmessage%2Ccreated_time%2Clikes.limit(0).summary(true)%26limit%3D100&version=v2.8
+
+
+7030462319/feed?fields=message,created_time,likes.limit(0).summary(true)&limit=100
+
+http://stackoverflow.com/questions/39314152/fb-graph-api-get-group-wall-posts-with-time-posted-and-number-of-likes
+
+group-id/feed?fields=message,created_time,likes.limit(0).summary(true)&limit=100
+

@@ -1,0 +1,42 @@
+import facebook
+
+groups = {
+    #'art-gypsy-housing': '7030462319',
+    #'not-gpysy-housing': '474569976042465',    
+    #'rent-sublet-share': '323359541058575',   
+    #'nyc-actor-sublet-connection': '6239548339',
+    #'gypsy-housing-avaible-new': '1438152599794284',`
+    'gpysy-housing-nyc': '1650616371871158',
+}
+
+
+from Tkinter import *
+root = Tk()
+
+w = Label(root, text="Hello, world!")
+w.pack()
+
+root.mainloop()
+
+token = 'EAADAXPbzWkwBAAWMy7G4Sf2BF9CeNkhQ5kiPE6WLXL0B4AEgccxcBmM6iq4PlZBpzMrw6Lmwcdb73aSQaOTgZCrzMN0YXRLH6hLTRC48BY2pFAtFR6ZCLHeESbqBEe9eUvoUEbGIbFNh7qmk9zZA3WCvSnIcHMtYiSwQPYH5OFLrDtIscDZC2OGok2JfJUXwZD'
+
+graph = facebook.GraphAPI(token)
+#profile = graph.get_object("me")
+#friends = graph.get_connections("me", "friends")
+
+
+for key, value in groups.iteritems():
+	test = graph.get_object(value + "/feed?fields=message,created_time,likes.limit(0).summary(true)&limit=2")
+	for post in  test["data"]:
+		print "POST: " , post
+#gypsyhousing = graph.get_object("7030462319/feed?fields=message,created_time,likes.limit(0).summary(true)&limit=2")
+
+#print "dir" , gypsyhousing["id"]
+#print "dir" , gypsyhousing["data"]
+
+
+#for post in  gypsyhousing["data"]:
+#	print "POST: " , post
+#friend_list = [friend['name'] for friend in friends['data']]
+
+print friend_list
