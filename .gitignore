@@ -8,6 +8,9 @@ out/
 ##### PYTHON #####
 *.pyc
 
+
+##### OTHER ######
+*.log
 config.cfg
 
 
