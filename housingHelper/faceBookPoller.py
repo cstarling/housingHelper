@@ -23,7 +23,7 @@ groups = {
 
 #token = facebook.GraphAPI().get_app_access_token(config.get('facebook_app', 'app_id'), config.get('facebook_app', 'app_secret'))
 token = config.get('facebook', 'token')
-#NOTEICE THE GET INT HERE!! WE DO THIS BECASUE THIS IS AN INT
+#NOTICE THE GET INT HERE!! WE DO THIS BECASUE THIS IS AN INT
 confidence_threshold = config.getint('fuzzywuzzy', 'confidence_threshold')
 graph = facebook.GraphAPI(token)
 previous_poll_time = datetime.now(tz.tzutc())
@@ -34,7 +34,8 @@ lowercaseKeywordList = [element.lower() for element in keywordsOfInterest.KEYWOR
 
 def findMatchedWords(post):
     #this is from fuzzy wuzzy yayay!
-    matchedWords = process.extract(post, lowercaseKeywordList, scorer=fuzz.token_set_ratio)
+    #matchedWords = process.extract(post, lowercaseKeywordList, scorer=fuzz.token_set_ratio)
+    matchedWords = process.extract(post, lowercaseKeywordList, scorer=fuzz.partial_ratio)
     #only keep confident matches. Lets say above 80 for now
     confidentMatchedWords = [s for s in matchedWords if s[1] > confidence_threshold]
     return confidentMatchedWords
@@ -42,9 +43,14 @@ def findMatchedWords(post):
 
 def checkIfPostOfInterest(post, group, groupId):
 	matchedWordsWithConfidence = findMatchedWords(post["message"].lower())
-	print "matchedWordsWithConfidence :: " , matchedWordsWithConfidence
 	if (len(matchedWordsWithConfidence) > 0):
-		print "post is of interest %s " % (matchedWordsWithConfidence)
+		link = ''
+		try:
+			# try and get link.  If there is none fall back to the group name and id
+			link = post['link']
+		except KeyError:
+			link = group + " " + groupId
+		print "post is of interest %s , %s" % (matchedWordsWithConfidence, link)
 		html = emailSender.formatMessage(post, group, groupId, matchedWordsWithConfidence)
 		html = html.encode('utf-8')
 		# lets just get the matched names.  We end up with a trailing comma and space so we remove the last 2 chars

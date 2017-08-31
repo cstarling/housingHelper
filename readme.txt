@@ -58,3 +58,6 @@ use a python spell corrector or equiv
 
 
 ######VIRTUALENV at  ~/VEnvironments/housingHelper/
+
+FUZZY WUZZY BLOG POST
+http://chairnerd.seatgeek.com/fuzzywuzzy-fuzzy-string-matching-in-python/

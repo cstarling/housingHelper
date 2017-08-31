@@ -3,7 +3,7 @@ KEYWORDS = [
     'upper west side',
     'ues',
     'upper east side',
-    'Lenox Hill'
+    'Lenox Hill',
     'Chelsea',
     'Hells Kitchen',
     'HK',
@@ -15,6 +15,7 @@ KEYWORDS = [
     'East Village',
     'West Village',
     'midtown',
+    'Turtle Bay',
     'Chinatown',
     'Bowery',
     'fidi',
@@ -34,7 +35,7 @@ KEYWORDS = [
     'Sutton Place',
     'Union Square',
     'Clinton',
-    'Roosevelt Island'
+    'Roosevelt Island',
 ###### BROOKLYN ######
     'barclays',
     'dumbo',
@@ -42,11 +43,10 @@ KEYWORDS = [
     'park slope',
     'prospect park',
         #franklin ave is in crown heights
-    'Franklin Ave',
+    'Franklin',
     'Crown Heights',
-    'barclays',
     'clinton hill',
-    'Prospect Heights'
+    'Prospect Heights',
     'Brooklyn Heights',
     'Cobble Hill',
     'Boerum Hill',
@@ -56,12 +56,11 @@ KEYWORDS = [
 ###### QUEENS  ######
     'astoria',
     'lic',
-    'long island city'
+    'long island city',
 ###### RANDOM ######
-    'month-to-month',
     'month to month',
     'm2m',
     'fully furnish',
-    'fully furnished',
-    'comes with furniture'
+    'comes with furniture',
+    'studio'
 ]
