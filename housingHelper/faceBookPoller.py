@@ -6,7 +6,7 @@ import emailSender
 from fuzzywuzzy import fuzz, process
 import dateutil.tz as tz
 import  ConfigParser
-
+import time
 config = ConfigParser.ConfigParser()
 config.read('../config.cfg')
 
@@ -59,7 +59,7 @@ def checkIfPostOfInterest(post, group, groupId):
 
 
 def poll():
-	print "IN POLL "
+	print "IN POLL ", time.strftime("%c")
 	global current_poll_time
 	global previous_poll_time
 	global polling_offset
