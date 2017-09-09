@@ -35,7 +35,8 @@ def formatMessage(post, group, groupId, matchedWords):
     for wordAndConfidence in matchedWords:
         word = wordAndConfidence[0]
         if word[0] in post['message']:
-            post['message'] = post['message'].replace(word, '<strong>' + word + '</strong>')
+            #post['message'] = post['message'].replace(word, '<strong>' + word + '</strong>')
+            post['message'] = post['message'].replace(word, '<span style="font-family: Arial; font-size: 14pt; color: #FF0000;">' + word + '</span>')
     try:
         # try and get link.  If there is none fall back to the group name and id
         link = post['link']
@@ -45,13 +46,15 @@ def formatMessage(post, group, groupId, matchedWords):
     html = """\
             <html>
              <head></head>
+
               <body>
               <p> from group :: %(group)s - %(groupId)s</p>
               <p> Matched on :: %(matchedWords)s</p>
-              <br>
-                <p>%(message)s
                 <br>
-                <br>
+                <p>
+                <pre style="font-family: Arial; font-size: 12pt; color: #525252;">
+                %(message)s
+                </pre>
                 %(link)s
                 </p>
               </body>

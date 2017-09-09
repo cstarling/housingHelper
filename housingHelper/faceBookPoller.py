@@ -1,6 +1,6 @@
 import facebook
 from dateutil.parser import *
-from datetime import datetime
+from datetime import datetime, timedelta
 import keywordsOfInterest
 import emailSender
 from fuzzywuzzy import fuzz, process
@@ -21,13 +21,16 @@ groups = {
 }
 
 
-#token = facebook.GraphAPI().get_app_access_token(config.get('facebook_app', 'app_id'), config.get('facebook_app', 'app_secret'))
-token = config.get('facebook', 'token')
+token = facebook.GraphAPI().get_app_access_token(config.get('facebook_app', 'app_id'), config.get('facebook_app', 'app_secret'))
+#token = config.get('facebook', 'token')
 #NOTICE THE GET INT HERE!! WE DO THIS BECASUE THIS IS AN INT
 confidence_threshold = config.getint('fuzzywuzzy', 'confidence_threshold')
 graph = facebook.GraphAPI(token)
-previous_poll_time = datetime.now(tz.tzutc())
-current_poll_time = datetime.now(tz.tzutc())
+#previous_poll_time = datetime.now(tz.tzutc())
+#current_poll_time = datetime.now(tz.tzutc())
+previous_poll_time = datetime.now(tz.tzutc()) #- timedelta(days=1)
+current_poll_time = datetime.now(tz.tzutc()) #-  timedelta(days=1)
+
 polling_offset = 30
 
 lowercaseKeywordList = [element.lower() for element in keywordsOfInterest.KEYWORDS]
@@ -72,7 +75,6 @@ def poll():
 		lower_time_limit = previous_poll_time
 		for post in test["data"]:
 			created_time = parse(post['created_time'])
-
 			if (created_time > lower_time_limit):
 				print "found new post in %s created at %s " % (groupName, created_time)
 				checkIfPostOfInterest(post, groupName, groupId)
